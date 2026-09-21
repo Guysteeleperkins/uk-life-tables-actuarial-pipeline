@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+# Adding raw files to git ignore as github is not used for holding large data sets -  can change later if need
+raw/*.xlsx 
+data/processed/*
