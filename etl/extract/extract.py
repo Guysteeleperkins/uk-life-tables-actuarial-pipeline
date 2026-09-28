@@ -32,7 +32,7 @@ def extract_female_data(sheet_name):
         header=5,
         usecols="H:M"  # just the males block
     )
-    females.columns = ["age", "mx", "qx", "lx", "dx", "ex"]  
+    females.columns = ["age", "mx", "qx", "lx", "dx", "ex"]
     # rename away from the .1 suffixes
     females["sex"] = "female"
     females["time_period"] = sheet_name
@@ -62,8 +62,8 @@ print(combined["time_period"].nunique())
 print(combined["sex"].value_counts())
 """
 
-all_data = extract_all_sheets()
-combined = combine_extracted_data(all_data)
+'''all_data = extract_all_sheets()
+combined_data = combine_extracted_data(all_data)'''
 
 
 """print(combined.head(10))
