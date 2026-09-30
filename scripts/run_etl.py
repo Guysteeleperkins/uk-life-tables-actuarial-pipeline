@@ -1,9 +1,4 @@
-import os
-import subprocess
-import sys
 from etl.extract.extract import (extract_all_sheets,
-                                 extract_female_data,
-                                 extract_male_data,
                                  combine_extracted_data)
 
 from etl.transform.transform import (split_time_period,
@@ -19,7 +14,6 @@ def main():
     extracted_data = run_extraction()
 
     transformed_data = run_transform(extracted_data)
-    print("Converting DataFrame to cleaned Excel file.. ")
     run_load(transformed_data)
 
 
@@ -55,6 +49,7 @@ def run_load(transformed_data):
     print("Exporting cleaned data to Excel.. ")
     export_to_excel(transformed_data)
     print("Excel export complete")
+
 
 if __name__ == "__main__":
     main()

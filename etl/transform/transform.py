@@ -1,7 +1,4 @@
 
-import pandas as pd
-
-
 def split_time_period(combined):
     combined = combined.copy() 
     combined["start_year"] = combined["time_period"].str.split("-").str[0].astype(int)
