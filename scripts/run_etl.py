@@ -1,3 +1,6 @@
+import os
+import subprocess
+import sys
 from etl.extract.extract import (extract_all_sheets,
                                  extract_female_data,
                                  extract_male_data,
@@ -7,6 +10,8 @@ from etl.transform.transform import (split_time_period,
                                      cast_dyptes,
                                      validate)
 
+from etl.load.load import export_to_excel, load_to_sqlite
+
 
 def main():
 
@@ -14,8 +19,8 @@ def main():
     extracted_data = run_extraction()
 
     transformed_data = run_transform(extracted_data)
-
-    print(transformed_data.shape)
+    print("Converting DataFrame to cleaned Excel file.. ")
+    run_load(transformed_data)
 
 
 def run_extraction():
@@ -42,6 +47,14 @@ def run_transform(extracted_data):
 
     return transformed_data
 
+
+def run_load(transformed_data):
+    print("Loading data to SQLite.. ")
+    rows = load_to_sqlite(transformed_data)
+    print(f"Loaded {rows} rows.")
+    print("Exporting cleaned data to Excel.. ")
+    export_to_excel(transformed_data)
+    print("Excel export complete")
 
 if __name__ == "__main__":
     main()
